@@ -9,6 +9,7 @@ import math
 import time
 import random
 import logging
+import subprocess
 
 from PIL import Image, ImageOps, ImageSequence, ImageFile
 from PIL.PngImagePlugin import PngInfo
@@ -1873,6 +1874,12 @@ def load_custom_node(module_path, ignore=set()):
         else:
             module_spec = importlib.util.spec_from_file_location(module_name, os.path.join(module_path, "__init__.py"))
             module_dir = module_path
+
+        if os.path.isfile("requirements.txt"):
+            subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])
+            print("Requirements installed successfully.")
+        else:
+            print(f"The file requirements.txt does not exist.")
 
         module = importlib.util.module_from_spec(module_spec)
         sys.modules[module_name] = module
