@@ -1,3 +1,10 @@
 comfy:
   base_path: /home/runner/user_data
   checkpoints: models/checkpoints/
+  custom_nodes: custom_nodes/
+
+
+comfy_shared:
+  base_path: /home/runner/shared
+  checkpoints: models/checkpoints/
+  custom_nodes: custom_nodes/
